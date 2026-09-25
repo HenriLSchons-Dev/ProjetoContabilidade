@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner ler = new Scanner(System.in);
-
+        //teste
         Cliente[] clientes = new Cliente[50];
         int quantidadeClientes = 0;
 
