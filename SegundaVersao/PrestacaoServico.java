@@ -1,9 +1,8 @@
 public class PrestacaoServico {
     
-    private String dataInicio;
-    private String dataFim;
-    private double valor;
-    private String status;
+    private int id;
+    private String data;
+    private double valorTotal;
 
     private Cliente cliente;
     private Colaborador colaborador;
