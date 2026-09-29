@@ -155,4 +155,16 @@ public class Cliente {
         }
     }
     
+    public ClientePj buscarEmpresa(int id){
+
+        for(int i = 0; i < empresas.size(); i++){
+
+            if(empresas.get(i).getId() == id){
+
+                return empresas.get(i);
+            }
+        }
+        return null;
+    }
+    
 }

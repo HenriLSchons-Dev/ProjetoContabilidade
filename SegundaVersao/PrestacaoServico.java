@@ -23,5 +23,55 @@ public class PrestacaoServico {
         this.documentos = new ArrayList<>();
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public double getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
+    public ClientePj getClientePj() {
+        return clientePj;
+    }
+
+    public void setClientePj(ClientePj clientePj) {
+        this.clientePj = clientePj;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public void adicionarServico(Servico servico){
+
+        servicos.add(servico);
+    }
+
+    public void adicionarDocumento(Documento documento){
+
+        documentos.add(documento);
+    }
+
 
 }
