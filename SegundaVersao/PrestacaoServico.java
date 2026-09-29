@@ -1,5 +1,5 @@
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class PrestacaoServico {
     
@@ -13,12 +13,11 @@ public class PrestacaoServico {
     private List<Documento> documentos;
 
     public PrestacaoServico(int id, String data, double valorTotal, ClientePj clientePj, Cliente cliente, Servico servicos) {
-
-        this.id = id;
-        this.data = data;
-        this.valorTotal = valorTotal;
-        this.clientePj = clientePj;
-        this.cliente = cliente;
+        setId(id);
+        setData(data);
+        setValorTotal(valorTotal);
+        setClientePj(clientePj);
+        setCliente(cliente);
         this.servicos = new ArrayList<>();
         this.documentos = new ArrayList<>();
     }
@@ -28,7 +27,9 @@ public class PrestacaoServico {
     }
 
     public void setId(int id) {
-        this.id = id;
+        if(id > 0){
+            this.id = id;
+        }
     }
 
     public String getData() {
@@ -36,7 +37,11 @@ public class PrestacaoServico {
     }
 
     public void setData(String data) {
-        this.data = data;
+        if(data == null || data.trim().isEmpty()){
+            System.out.println("Data vazia");
+        } else {
+            this.data = data;
+        }
     }
 
     public double getValorTotal() {
@@ -44,7 +49,9 @@ public class PrestacaoServico {
     }
 
     public void setValorTotal(double valorTotal) {
-        this.valorTotal = valorTotal;
+        if(valorTotal >= 0){
+            this.valorTotal = valorTotal;
+        }
     }
 
     public ClientePj getClientePj() {
@@ -64,14 +71,11 @@ public class PrestacaoServico {
     }
 
     public void adicionarServico(Servico servico){
-
         servicos.add(servico);
     }
 
     public void adicionarDocumento(Documento documento){
-
         documentos.add(documento);
     }
-
 
 }

@@ -8,11 +8,11 @@ public class Servico {
     private PrestacaoServico prestacaoServico;
 
     public Servico(String tipo, String area, String descricao, double valor, PrestacaoServico prestacaoServico) {
-        this.tipo = tipo;
-        this.area = area;
-        this.descricao = descricao;
-        this.valor = valor;
-        this.prestacaoServico = prestacaoServico;
+        setTipo(tipo);
+        setArea(area);
+        setDescricao(descricao);
+        setValor(valor);
+        setPrestacaoServico(prestacaoServico);
     }
 
     public String getTipo() {
@@ -20,7 +20,11 @@ public class Servico {
     }
 
     public void setTipo(String tipo) {
-        this.tipo = tipo;
+        if(tipo == null || tipo.trim().isEmpty()){
+            System.out.println("Tipo vazio");
+        } else {
+            this.tipo = tipo;
+        }
     }
 
     public String getArea() {
@@ -28,7 +32,11 @@ public class Servico {
     }
 
     public void setArea(String area) {
-        this.area = area;
+        if(area == null || area.trim().isEmpty()){
+            System.out.println("Area vazia");
+        } else {
+            this.area = area;
+        }
     }
 
     public String getDescricao() {
@@ -36,7 +44,11 @@ public class Servico {
     }
 
     public void setDescricao(String descricao) {
-        this.descricao = descricao;
+        if(descricao == null || descricao.trim().isEmpty()){
+            System.out.println("Descricao vazia");
+        } else {
+            this.descricao = descricao;
+        }
     }
 
     public double getValor() {
@@ -44,7 +56,9 @@ public class Servico {
     }
 
     public void setValor(double valor) {
-        this.valor = valor;
+        if(valor >= 0){
+            this.valor = valor;
+        }
     }
 
     public PrestacaoServico getPrestacaoServico() {

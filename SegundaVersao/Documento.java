@@ -6,12 +6,27 @@ public class Documento {
 
     private Servico servico;
 
+    public Documento(){
+
+    }
+
+    public Documento(String tipo, String dataEmissao, String orgaoPublico, Servico servico){
+        setTipo(tipo);
+        setDataEmissao(dataEmissao);
+        setOrgaoPublico(orgaoPublico);
+        setServico(servico);
+    }
+
     public String getTipo() {
         return tipo;
     }
 
     public void setTipo(String tipo) {
-        this.tipo = tipo;
+        if(tipo == null || tipo.trim().isEmpty()){
+            System.out.println("Tipo vazio");
+        } else {
+            this.tipo = tipo;
+        }
     }
 
     public String getDataEmissao() {
@@ -19,7 +34,11 @@ public class Documento {
     }
 
     public void setDataEmissao(String dataEmissao) {
-        this.dataEmissao = dataEmissao;
+        if(dataEmissao == null || dataEmissao.trim().isEmpty()){
+            System.out.println("Data da emissao vazio");
+        } else {
+            this.dataEmissao = dataEmissao;
+        }
     }
 
     public String getOrgaoPublico() {
