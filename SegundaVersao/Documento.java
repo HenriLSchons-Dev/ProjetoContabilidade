@@ -1,52 +1,42 @@
 public class Documento {
 
     private String tipo;
-    private String arquivo;
-    private String competencia;
+    private String dataEmissao;
+    private String orgaoPublico;
 
-    public Documento(){
-        
-    }
-
-    public Documento(String tipo, String arquivo, String competencia) {
-        setTipo(tipo);
-        setArquivo(arquivo);
-        setCompetencia(competencia);
-    }
+    private Servico servico;
 
     public String getTipo() {
         return tipo;
     }
 
     public void setTipo(String tipo) {
-        if(tipo == null || tipo.trim().isEmpty()){
-            System.out.println("Tipagem vazia");
-        } else {
-            this.tipo = tipo;
-        }
+        this.tipo = tipo;
     }
 
-    public String getArquivo() {
-        return arquivo;
+    public String getDataEmissao() {
+        return dataEmissao;
     }
 
-    public void setArquivo(String arquivo) {
-        if(arquivo == null || arquivo.trim().isEmpty()){
-            System.out.println("Arquivo vazio");
-        } else {
-            this.arquivo = arquivo;
-        }
+    public void setDataEmissao(String dataEmissao) {
+        this.dataEmissao = dataEmissao;
     }
 
-    public String getCompetencia() {
-        return competencia;
+    public String getOrgaoPublico() {
+        return orgaoPublico;
     }
 
-    public void setCompetencia(String competencia) {
-        if(competencia == null || competencia.trim().isEmpty()){
-            System.out.println("Competencia vazia");
-        } else {
-            this.competencia = competencia;
-        }
-    }  
+    public void setOrgaoPublico(String orgaoPublico) {
+        this.orgaoPublico = orgaoPublico;
+    }
+
+    public Servico getServico() {
+        return servico;
+    }
+
+    public void setServico(Servico servico) {
+        this.servico = servico;
+    }
+
+
 }

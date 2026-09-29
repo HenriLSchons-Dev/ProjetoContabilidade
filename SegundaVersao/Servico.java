@@ -1,45 +1,26 @@
 public class Servico {
     
-    private int id;
-    private String nomeServico;
+    private String tipo;
     private String area;
     private String descricao;
-    private double valorBase;
-    private String periodicidade;
+    private double valor;
 
-    public Servico(){
+    private PrestacaoServico prestacaoServico;
 
+    public Servico(String tipo, String area, String descricao, double valor, PrestacaoServico prestacaoServico) {
+        this.tipo = tipo;
+        this.area = area;
+        this.descricao = descricao;
+        this.valor = valor;
+        this.prestacaoServico = prestacaoServico;
     }
 
-    public Servico(int id, String nomeServico, String area, String descricao, double valorBase, String periodicidade) {
-        setId(id);
-        setNomeServico(nomeServico);
-        setArea(area);
-        setDescricao(descricao);
-        setValorBase(valorBase);
-        setPeriodicidade(periodicidade);
+    public String getTipo() {
+        return tipo;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        if(id > 0){
-            this.id = id;
-        }
-    }
-
-    public String getNomeServico() {
-        return nomeServico;
-    }
-
-    public void setNomeServico(String nomeServico) {
-        if(nomeServico == null || nomeServico.trim().isEmpty()){
-            System.out.println("Nome em branco");
-        } else {
-            this.nomeServico = nomeServico;
-        }
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getArea() {
@@ -47,43 +28,32 @@ public class Servico {
     }
 
     public void setArea(String area) {
-        if(area == null || area.trim().isEmpty()){
-            System.out.println("Area inexistente");
-        } else {
-            this.area = area;
-        }
+        this.area = area;
     }
+
     public String getDescricao() {
         return descricao;
     }
 
     public void setDescricao(String descricao) {
-        if(descricao == null || descricao.trim().isEmpty()){
-            System.out.println("Descricao vazia");
-        } else {
-            this.descricao = descricao;
-        }
+        this.descricao = descricao;
     }
 
-    public double getValorBase() {
-        return valorBase;
+    public double getValor() {
+        return valor;
     }
 
-    public void setValorBase(double valorBase) {
-        if(valorBase > 0){
-            this.valorBase = valorBase;
-        }
+    public void setValor(double valor) {
+        this.valor = valor;
     }
 
-    public String getPeriodicidade() {
-        return periodicidade;
+    public PrestacaoServico getPrestacaoServico() {
+        return prestacaoServico;
     }
 
-    public void setPeriodicidade(String periodicidade) {
-        if(periodicidade == null || periodicidade.trim().isEmpty()){
-            System.out.println("Periodicidade inexistente");
-        } else {
-            this.periodicidade = periodicidade;
-        }
+    public void setPrestacaoServico(PrestacaoServico prestacaoServico) {
+        this.prestacaoServico = prestacaoServico;
     }
+
+
 }

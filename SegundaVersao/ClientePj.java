@@ -24,7 +24,7 @@
             setCnae(cnae);
             setCliente(cliente);
             setEndereco(endereco);
-            this.prestacaoServico = new ArrayList<>();
+            this.prestacaoServicos = new ArrayList<>();
         }
 
         public int getId() {
@@ -49,72 +49,77 @@
         }
     }
 
-    public boolean validarCnpj(String cnpj) {
-        if (cnpj == null) {
-            return false;
+        public boolean validarCnpj(String cnpj) {
+            
+            if (cnpj == null) {
+                return false;
+            }
+
+            cnpj = cnpj.replace(".", "").replace("/", "").replace("-", "");
+
+            if (cnpj.length() != 14) {
+                return false;
+            }
+
+            if (!cnpj.matches("\\d{14}")) {
+                return false;
+            }
+
+            if (cnpj.chars().distinct().count() == 1) {
+                return false;
+            }
+
+
+            int soma = 0;
+
+            int[] pesosPrimeiro = {5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2};
+
+            for (int i = 0; i < 12; i++) {
+                int numero = Character.getNumericValue(cnpj.charAt(i));
+                soma += numero * pesosPrimeiro[i];
+            }
+
+            int resto = soma % 11;
+
+            int primeiroDigito;
+
+            if (resto < 2) {
+                primeiroDigito = 0;
+            } else {
+                primeiroDigito = 11 - resto;
+            }
+
+            if (primeiroDigito != Character.getNumericValue(cnpj.charAt(12))) {
+                return false;
+            }
+            
+            soma = 0;
+
+            int[] pesosSegundo = {
+                6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2
+            };
+
+            for (int i = 0; i < 13; i++) {
+                int numero = Character.getNumericValue(cnpj.charAt(i));
+                soma += numero * pesosSegundo[i];
+            }
+
+            resto = soma % 11;
+
+            int segundoDigito;
+
+            if (resto < 2) {
+                segundoDigito = 0;
+            } else {
+                segundoDigito = 11 - resto;
+            }
+
+            return segundoDigito == Character.getNumericValue(cnpj.charAt(13));
         }
 
-        cnpj = cnpj.replace(".", "").replace("/", "").replace("-", "");
-
-        if (cnpj.length() != 14) {
-            return false;
+        public String getRazaoSocial() {
+            return razaoSocial;
         }
-
-        if (!cnpj.matches("\\d{14}")) {
-            return false;
-        }
-
-        if (cnpj.chars().distinct().count() == 1) {
-            return false;
-        }
-
-
-        int soma = 0;
-
-        int[] pesosPrimeiro = {5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2};
-
-        for (int i = 0; i < 12; i++) {
-            int numero = Character.getNumericValue(cnpj.charAt(i));
-            soma += numero * pesosPrimeiro[i];
-        }
-
-        int resto = soma % 11;
-
-        int primeiroDigito;
-
-        if (resto < 2) {
-            primeiroDigito = 0;
-        } else {
-            primeiroDigito = 11 - resto;
-        }
-
-        if (primeiroDigito != Character.getNumericValue(cnpj.charAt(12))) {
-            return false;
-        }
-        
-        soma = 0;
-
-        int[] pesosSegundo = {
-            6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2
-        };
-
-        for (int i = 0; i < 13; i++) {
-            int numero = Character.getNumericValue(cnpj.charAt(i));
-            soma += numero * pesosSegundo[i];
-        }
-
-        resto = soma % 11;
-
-        int segundoDigito;
-
-        if (resto < 2) {
-            segundoDigito = 0;
-        } else {
-            segundoDigito = 11 - resto;
-        }
-
-        return segundoDigito == Character.getNumericValue(cnpj.charAt(13));
-    }
 
         public void setRazaoSocial(String razaoSocial) {
             if(razaoSocial == null || razaoSocial.trim().isEmpty()){
