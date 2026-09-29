@@ -13,7 +13,7 @@ public class Cliente {
     private List<PrestacaoServico> prestacaoServicos;
 
 
-    public Cliente(int id, String nome, String cpf, String telefone, String email, PrestacaoServico prestacaoServico, ClientePj empresas) {
+    public Cliente(int id, String nome, String cpf, String telefone, String email) {
         setId(id);
         setNome(nome);
         setCpf(cpf);
