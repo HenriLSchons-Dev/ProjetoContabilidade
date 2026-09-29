@@ -1,102 +1,180 @@
-import java.util.List;
-import java.util.ArrayList;
+    import java.util.List;
+    import java.util.ArrayList;
 
-public class ClientePj {
+    public class ClientePj {
 
-    private int id;
-    private String cnpj; 
-    private String razaoSocial;
-    private String nomeFantasia;
-    private double faturamentoMensal;
-    private String cnae;
+        private int id;
+        private String cnpj; 
+        private String razaoSocial;
+        private String nomeFantasia;
+        private double faturamentoMensal;
+        private String cnae;
 
-    private Cliente cliente;
-    private Endereco endereco;
+        private Cliente cliente;
+        private Endereco endereco;
 
-    private List<PrestacaoServico> prestacaoServicos;
+        private List<PrestacaoServico> prestacaoServicos;
 
-    public ClientePj(int id, String cnpj, String razaoSocial, String nomeFantasia, double faturamentoMensal, String cnae, Cliente cliente, Endereco endereco, PrestacaoServico prestacaoServico) {
-        this.id = id;
-        this.cnpj = cnpj;
-        this.razaoSocial = razaoSocial;
-        this.nomeFantasia = nomeFantasia;
-        this.faturamentoMensal = faturamentoMensal;
-        this.cnae = cnae;
-        this.cliente = cliente;
-        this.endereco = endereco;
-        this.prestacaoServico = new ArrayList<>();
+        public ClientePj(int id, String cnpj, String razaoSocial, String nomeFantasia, double faturamentoMensal, String cnae, Cliente cliente, Endereco endereco, PrestacaoServico prestacaoServico) {
+            setId(id);
+            setCnpj(cnpj);
+            setRazaoSocial(razaoSocial);
+            setNomeFantasia(nomeFantasia);
+            setFaturamentoMensal(faturamentoMensal);
+            setCnae(cnae);
+            setCliente(cliente);
+            setEndereco(endereco);
+            this.prestacaoServico = new ArrayList<>();
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            if(id > 0){
+                this.id = id;
+            }
+        }
+
+        public String getCnpj() {
+            return cnpj;
+        }
+
+        public void setCnpj(String cnpj) {
+        if (validarCnpj(cnpj)) {
+            this.cnpj = cnpj;
+        } else {
+            System.out.println("CNPJ inválido");
+        }
     }
 
-    public int getId() {
-        return id;
+    public boolean validarCnpj(String cnpj) {
+        if (cnpj == null) {
+            return false;
+        }
+
+        cnpj = cnpj.replace(".", "").replace("/", "").replace("-", "");
+
+        if (cnpj.length() != 14) {
+            return false;
+        }
+
+        if (!cnpj.matches("\\d{14}")) {
+            return false;
+        }
+
+        if (cnpj.chars().distinct().count() == 1) {
+            return false;
+        }
+
+
+        int soma = 0;
+
+        int[] pesosPrimeiro = {5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2};
+
+        for (int i = 0; i < 12; i++) {
+            int numero = Character.getNumericValue(cnpj.charAt(i));
+            soma += numero * pesosPrimeiro[i];
+        }
+
+        int resto = soma % 11;
+
+        int primeiroDigito;
+
+        if (resto < 2) {
+            primeiroDigito = 0;
+        } else {
+            primeiroDigito = 11 - resto;
+        }
+
+        if (primeiroDigito != Character.getNumericValue(cnpj.charAt(12))) {
+            return false;
+        }
+        
+        soma = 0;
+
+        int[] pesosSegundo = {
+            6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2
+        };
+
+        for (int i = 0; i < 13; i++) {
+            int numero = Character.getNumericValue(cnpj.charAt(i));
+            soma += numero * pesosSegundo[i];
+        }
+
+        resto = soma % 11;
+
+        int segundoDigito;
+
+        if (resto < 2) {
+            segundoDigito = 0;
+        } else {
+            segundoDigito = 11 - resto;
+        }
+
+        return segundoDigito == Character.getNumericValue(cnpj.charAt(13));
     }
 
-    public void setId(int id) {
-        this.id = id;
+        public void setRazaoSocial(String razaoSocial) {
+            if(razaoSocial == null || razaoSocial.trim().isEmpty()){
+                System.out.println("Razao social vazia");
+            } else {
+                this.razaoSocial = razaoSocial;
+            }
+        }
+
+        public String getNomeFantasia() {
+            return nomeFantasia;
+        }
+
+        public void setNomeFantasia(String nomeFantasia) {
+            if(nomeFantasia == null || nomeFantasia.trim().isEmpty()){
+                System.out.println("Nome fantasia vazio");
+            } else {
+                this.nomeFantasia = nomeFantasia;
+            }
+        }
+
+        public double getFaturamentoMensal() {
+            return faturamentoMensal;
+        }
+
+        public void setFaturamentoMensal(double faturamentoMensal) {
+            if(faturamentoMensal >= 0){
+                this.faturamentoMensal = faturamentoMensal;
+            }
+        }
+
+        public String getCnae() {
+            return cnae;
+        }
+
+        public void setCnae(String cnae) {
+            if(cnae == null || cnae.trim().isEmpty()){
+                System.out.println("CNAE vazio");
+            } else {
+                this.cnae = cnae;
+            }
+        }
+
+        public Cliente getCliente() {
+            return cliente;
+        }
+
+        public void setCliente(Cliente cliente) {
+            this.cliente = cliente;
+        }
+
+        public Endereco getEndereco() {
+            return endereco;
+        }
+
+        public void setEndereco(Endereco endereco) {
+            this.endereco = endereco;
+        }
+
+        public void adicionarPrestacao(PrestacaoServico prestacaoServico){
+            prestacaoServicos.add(prestacaoServico);
+        }
     }
-
-    public String getCnpj() {
-        return cnpj;
-    }
-
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
-
-    public String getRazaoSocial() {
-        return razaoSocial;
-    }
-
-    public void setRazaoSocial(String razaoSocial) {
-        this.razaoSocial = razaoSocial;
-    }
-
-    public String getNomeFantasia() {
-        return nomeFantasia;
-    }
-
-    public void setNomeFantasia(String nomeFantasia) {
-        this.nomeFantasia = nomeFantasia;
-    }
-
-    public double getFaturamentoMensal() {
-        return faturamentoMensal;
-    }
-
-    public void setFaturamentoMensal(double faturamentoMensal) {
-        this.faturamentoMensal = faturamentoMensal;
-    }
-
-    public String getCnae() {
-        return cnae;
-    }
-
-    public void setCnae(String cnae) {
-        this.cnae = cnae;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
-
-    public boolean validarCNPJ(){
-
-    }
-
-    public void adicionarPrestacao(PrestacaoServico prestacaoServico){
-
-        prestacaoServicos.add(prestacaoServico);
-    }
-}

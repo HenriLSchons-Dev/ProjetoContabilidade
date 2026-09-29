@@ -8,12 +8,12 @@ public class Endereco {
     private String cep;
 
     public Endereco(String rua, String numero, String bairro, String cidade, String estado, String cep) {
-        this.rua = rua;
-        this.numero = numero;
-        this.bairro = bairro;
-        this.cidade = cidade;
-        this.estado = estado;
-        this.cep = cep;
+        setRua(rua);
+        setNumero(numero);
+        setBairro(bairro);
+        setCidade(cidade);
+        setEstado(estado);
+        setCep(cep);
     }
 
     public String getRua() {
@@ -21,7 +21,11 @@ public class Endereco {
     }
 
     public void setRua(String rua) {
-        this.rua = rua;
+        if(rua == null || rua.trim().isEmpty()){
+            System.out.println("Rua vazia");
+        } else {
+            this.rua = rua;
+        }
     }
 
     public String getNumero() {
@@ -29,7 +33,11 @@ public class Endereco {
     }
 
     public void setNumero(String numero) {
-        this.numero = numero;
+        if(numero == null || numero.trim().isEmpty()){
+            System.out.println("Numero vazio");
+        } else {
+            this.numero = numero;
+        }
     }
 
     public String getBairro() {
@@ -37,7 +45,11 @@ public class Endereco {
     }
 
     public void setBairro(String bairro) {
-        this.bairro = bairro;
+        if(bairro == null || bairro.trim().isEmpty()){
+            System.out.println("Bairro vazio");
+        } else {
+            this.bairro = bairro;
+        }
     }
 
     public String getCidade() {
@@ -45,7 +57,11 @@ public class Endereco {
     }
 
     public void setCidade(String cidade) {
-        this.cidade = cidade;
+        if(cidade == null || cidade.trim().isEmpty()){
+            System.out.println("Cidade vazia");
+        } else {
+            this.cidade = cidade;
+        }
     }
 
     public String getEstado() {
@@ -53,7 +69,11 @@ public class Endereco {
     }
 
     public void setEstado(String estado) {
-        this.estado = estado;
+        if(estado == null || estado.trim().isEmpty()){
+            System.out.println("Estado vazio");
+        } else {
+            this.estado = estado;
+        }
     }
 
     public String getCep() {
@@ -61,13 +81,26 @@ public class Endereco {
     }
 
     public void setCep(String cep) {
-        this.cep = cep;
+        if(cep == null || cep.trim().isEmpty()){
+            System.out.println("cep vazia");
+        } else {
+            this.cep = cep;
+        }
     }
 
-    public boolean validarCep(){
+    public boolean validarCep(String cep) {
 
-        
+        if (cep == null) {
+            return false;
+        }
+
+        cep = cep.replace("-", "");
+
+        if (!cep.matches("\\d{8}")) {
+            return false;
+        }
+
+        return true;
     }
-
 
 }
