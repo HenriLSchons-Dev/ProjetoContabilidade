@@ -7,19 +7,30 @@ public class PrestacaoServico {
     private String data;
     private double valorTotal;
 
-    private ClientePj clientePj;
-    private Cliente cliente;
     private List<Servico> servicos;
     private List<Documento> documentos;
 
-    public PrestacaoServico(int id, String data, double valorTotal, ClientePj clientePj, Cliente cliente, Servico servicos) {
+    public PrestacaoServico(int id, String data, double valorTotal) {
+
         setId(id);
         setData(data);
         setValorTotal(valorTotal);
-        setClientePj(clientePj);
-        setCliente(cliente);
+
         this.servicos = new ArrayList<>();
         this.documentos = new ArrayList<>();
+    }
+
+    public double faturamentoServico(){
+
+        double total = 0;
+
+        for(int i = 0; i < servicos.size(); i++){
+
+            total = total + servicos.get(i).getValor();
+
+        }
+
+        return total;
     }
 
     public int getId() {
@@ -52,22 +63,6 @@ public class PrestacaoServico {
         if(valorTotal >= 0){
             this.valorTotal = valorTotal;
         }
-    }
-
-    public ClientePj getClientePj() {
-        return clientePj;
-    }
-
-    public void setClientePj(ClientePj clientePj) {
-        this.clientePj = clientePj;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
     }
 
     public void adicionarServico(Servico servico){

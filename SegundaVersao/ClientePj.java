@@ -15,16 +15,28 @@
 
         private List<PrestacaoServico> prestacaoServicos;
 
-        public ClientePj(int id, String cnpj, String razaoSocial, String nomeFantasia, double faturamentoMensal, String cnae, Cliente cliente, Endereco endereco, PrestacaoServico prestacaoServico) {
+        public ClientePj(int id, String cnpj, String razaoSocial, String nomeFantasia, double faturamentoMensal, String cnae) {
             setId(id);
             setCnpj(cnpj);
             setRazaoSocial(razaoSocial);
             setNomeFantasia(nomeFantasia);
             setFaturamentoMensal(faturamentoMensal);
             setCnae(cnae);
-            setCliente(cliente);
-            setEndereco(endereco);
+
             this.prestacaoServicos = new ArrayList<>();
+        }
+
+        public double faturamentoEmpresa(){
+
+            double total = 0;
+
+            for(int i = 0; i < prestacaoServicos.size(); i++){
+
+                total = total + prestacaoServicos.get(i).faturamentoServico();
+
+            }
+
+            return total;
         }
 
         public int getId() {

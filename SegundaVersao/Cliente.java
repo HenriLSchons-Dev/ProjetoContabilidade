@@ -23,6 +23,43 @@ public class Cliente {
         this.empresas = new ArrayList<>();
     }
 
+    public void mostraDados(){
+
+        System.out.println("=================");
+        System.out.println("ID do cliente: " + getId());
+        System.out.println("Nome do cliente: " + getNome());
+        System.out.println("CPF do cliente: " + getCpf());
+        System.out.println("Telefone do cliente: " + getTelefone());
+        System.out.println("Email do cliente: " + getEmail() + "\n");
+
+    }
+
+    public double faturamentoCPF(){
+
+        double total = 0;
+
+        for(int i = 0; i < prestacaoServicos.size(); i++){
+
+            total = total + prestacaoServicos.get(i).faturamentoServico();
+
+        }
+
+        return total;
+    }
+
+    public double faturamentoCNPJ(){
+
+        double total = 0;
+
+        for(int i = 0; i < empresas.size(); i++){
+
+            total = total + empresas.get(i).faturamentoEmpresa();
+
+        }
+
+            return total;
+    }
+
     public int getId() {
         return id;
     }

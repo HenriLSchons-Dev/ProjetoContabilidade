@@ -4,17 +4,14 @@ public class Documento {
     private String dataEmissao;
     private String orgaoPublico;
 
-    private Servico servico;
-
     public Documento(){
 
     }
 
-    public Documento(String tipo, String dataEmissao, String orgaoPublico, Servico servico){
+    public Documento(String tipo, String dataEmissao, String orgaoPublico){
         setTipo(tipo);
         setDataEmissao(dataEmissao);
-        setOrgaoPublico(orgaoPublico);
-        setServico(servico);
+        setOrgaoPublico(orgaoPublico);;
     }
 
     public String getTipo() {
@@ -48,14 +45,5 @@ public class Documento {
     public void setOrgaoPublico(String orgaoPublico) {
         this.orgaoPublico = orgaoPublico;
     }
-
-    public Servico getServico() {
-        return servico;
-    }
-
-    public void setServico(Servico servico) {
-        this.servico = servico;
-    }
-
 
 }

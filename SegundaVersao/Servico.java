@@ -5,14 +5,11 @@ public class Servico {
     private String descricao;
     private double valor;
 
-    private PrestacaoServico prestacaoServico;
-
-    public Servico(String tipo, String area, String descricao, double valor, PrestacaoServico prestacaoServico) {
+    public Servico(String tipo, String area, String descricao, double valor) {
         setTipo(tipo);
         setArea(area);
         setDescricao(descricao);
         setValor(valor);
-        setPrestacaoServico(prestacaoServico);
     }
 
     public String getTipo() {
@@ -60,14 +57,5 @@ public class Servico {
             this.valor = valor;
         }
     }
-
-    public PrestacaoServico getPrestacaoServico() {
-        return prestacaoServico;
-    }
-
-    public void setPrestacaoServico(PrestacaoServico prestacaoServico) {
-        this.prestacaoServico = prestacaoServico;
-    }
-
 
 }
