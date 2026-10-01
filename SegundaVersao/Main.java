@@ -9,7 +9,7 @@ public class Main {
         Scanner ler = new Scanner(System.in);
         List<Cliente> clientes = new ArrayList<>();
 
-        int opcao = -1;
+        int opcao = -1, tipo;
         int auxiliar2, i;
         boolean auxiliar3;
         String auxiliar1;
@@ -42,10 +42,10 @@ public class Main {
                     System.out.println("2 - CNPJ");
                     System.out.println("3 - Voltar");
 
-                    opcao = ler.nextInt();
+                    tipo = ler.nextInt();
                     ler.nextLine();
 
-                        switch(opcao){
+                        switch(tipo){
 
                             case 1: 
                                 cliente = new Cliente(0, "0", "", "", "");
@@ -64,6 +64,7 @@ public class Main {
 
                                 System.out.print("ID: ");
                                 cliente.setId(ler.nextInt());
+                                ler.nextLine();
 
                                 clientes.add(cliente);
 
@@ -82,6 +83,7 @@ public class Main {
                                 }
                                 System.out.print("Digite o id do Cliente: ");
                                 auxiliar2 = ler.nextInt();
+                                ler.nextLine();
 
                                 for(i = 0; i < clientes.size(); i++){
 
@@ -91,6 +93,7 @@ public class Main {
 
                                         System.out.print("Id: ");
                                         empresa.setId(ler.nextInt());
+                                        ler.nextLine();
 
                                         System.out.print("CNPJ: ");
                                         empresa.setCnpj(ler.nextLine());
@@ -103,6 +106,7 @@ public class Main {
 
                                         System.out.print("Faturamento Mensal: ");
                                         empresa.setFaturamentoMensal(ler.nextDouble());
+                                        ler.nextLine();
 
                                         System.out.print("CNAE: ");
                                         empresa.setCnae(ler.nextLine());
@@ -134,12 +138,14 @@ public class Main {
                     System.out.println("2 - Para um CNPJ");
                     System.out.println("3 - Voltar");
                         
-                    opcao = ler.nextInt();
+                    tipo = ler.nextInt();
                     ler.nextLine();
                         
-                        switch(opcao){
+                        switch(tipo){
 
                             case 1:
+
+                                auxiliar3 = false;
 
                                 System.out.println("==Selecione o cliente para vincular o Servico==");
 
@@ -151,6 +157,7 @@ public class Main {
                                 }
                                 System.out.print("Digite o id do Cliente: ");
                                 auxiliar2 = ler.nextInt();
+                                ler.nextLine();
 
                                 for(i = 0; i < clientes.size(); i++){
 
@@ -173,6 +180,7 @@ public class Main {
 
                                         System.out.println("Qual o valor cobrado: ");
                                         servico.setValor(ler.nextDouble());
+                                        ler.nextLine();
 
                                         System.out.println("=====Documento=====");
 
@@ -192,6 +200,7 @@ public class Main {
 
                                         System.out.println("ID da operacao: ");
                                         pServico.setId(ler.nextInt());
+                                        ler.nextLine();
 
                                         System.out.println("Data que foi realizada: ");
                                         pServico.setData(ler.nextLine());
@@ -203,14 +212,114 @@ public class Main {
                                         
                                         clientes.get(i).adicionarPrestacao(pServico);
 
-                                    }
-                                    else{
-                                        System.out.println("ID selecionado não existe");
+                                        auxiliar3 = true;
+
                                     }
                                 }
+                                if(auxiliar3 == false){
+                                    System.out.println("ID selecionado não existe");
+                                }
+
                                 break;
                             case 2:
+
+                                auxiliar3 = false;
+
+                                System.out.println("==Selecione o cliente para vincular o Servico==");
+
+                                for(i = 0; i < clientes.size(); i++){
+
+                                    System.out.println("ID: " + clientes.get(i).getId());
+                                    System.out.println("Nome: " + clientes.get(i).getNome() + "\n");
+
+                                }
+                                System.out.print("Digite o id do Cliente: ");
+                                auxiliar2 = ler.nextInt();
+                                ler.nextLine();
+
+                                for(i = 0; i < clientes.size(); i++){
+
+                                    if(clientes.get(i).getId() == auxiliar2){
+
+                                        auxiliar3 = true;
+
+                                        System.out.println("==Selecione a empresa para vincular o Servico==");
+                                        clientes.get(i).listaEmpresas();
+
+                                        System.out.print("Digite o id da Empresa: ");
+                                        auxiliar2 = ler.nextInt();
+                                        ler.nextLine();
+
+                                        empresa = clientes.get(i).buscarEmpresa(auxiliar2);
+
+                                        if(empresa == null){
+
+                                            System.out.println("Esta empresa nao existe");
+
+                                        }
+                                        else{
+
+                                            pServico = new PrestacaoServico(0, "", 0);
+                                            servico = new Servico("", "", "", 0);
+                                            documento = new Documento("", "", "");
+
+                                            System.out.println("=====Servico=====");
+
+                                            System.out.println("Qual o tipo de Servico: ");
+                                            servico.setTipo(ler.nextLine());
+
+                                            System.out.println("Qual a area: ");
+                                            servico.setArea(ler.nextLine());
+
+                                            System.out.println("O que sera feito: ");
+                                            servico.setDescricao(ler.nextLine());
+
+                                            System.out.println("Qual o valor cobrado: ");
+                                            servico.setValor(ler.nextDouble());
+                                            ler.nextLine();
+
+                                            System.out.println("=====Documento=====");
+
+                                            System.out.println("Qual o tipo de documento: ");
+                                            documento.setTipo(ler.nextLine());
+
+                                            System.out.println("Data de emissao do documento: ");
+                                            documento.setDataEmissao(ler.nextLine());
+
+                                            System.out.println("Qual orgao publico emitiu o documento: ");
+                                            documento.setOrgaoPublico(ler.nextLine());
+
+                                            System.out.println("=====Emissao da Prestacao de servico=====");
+
+                                            pServico.adicionarServico(servico);
+                                            pServico.adicionarDocumento(documento);
+
+                                            System.out.println("ID da operacao: ");
+                                            pServico.setId(ler.nextInt());
+                                            ler.nextLine();
+
+                                            System.out.println("Data que foi realizada: ");
+                                            pServico.setData(ler.nextLine());
+
+                                            System.out.println("Valor do servico: " + pServico.faturamentoServico());
+                                            pServico.setValorTotal(pServico.faturamentoServico());
+
+                                            empresa.adicionarPrestacao(pServico);
+
+                                            System.out.println("Servico prestado resgistado!");
+
+                                        }
+
+                                        break;
+                                    }
+                                }
+
+                                if(auxiliar3 == false){
+                                    System.out.println("ID selecionado não existe");
+                                }
+
                                 break;
+
                             case 3:
                                 break;
                             default:

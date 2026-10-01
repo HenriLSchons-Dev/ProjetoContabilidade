@@ -187,7 +187,7 @@ public class Cliente {
             System.out.println("=======Empresas=======");
 
             for(int i = 0; i < empresas.size(); i++){
-                empresas.get(i).getRazaoSocial();
+                System.out.println("ID: " + empresas.get(i).getId() + " - " + empresas.get(i).getRazaoSocial());
             }
         }
     }
